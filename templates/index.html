@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bate Ponto</title>
+</head>
+<body>
+    <h1>Bate Ponto de Funcionários</h1>
+    
+    <h2>Bater Ponto</h2>
+    <form action="/bate_ponto_entrada" method="POST">
+        <input type="text" name="nome" placeholder="Nome do funcionário" required>
+        <button type="submit">Bater Ponto de Entrada</button>
+    </form>
+
+    <form action="/bate_ponto_saida" method="POST">
+        <input type="text" name="nome" placeholder="Nome do funcionário" required>
+        <button type="submit">Bater Ponto de Saída</button>
+    </form>
+
+    <h2>Histórico de Ponto</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Entrada</th>
+                <th>Saída</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro['nome'] }}</td>
+                <td>{{ registro['entrada'] }}</td>
+                <td>{{ registro['saida'] or 'Ainda não bateu saída' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
